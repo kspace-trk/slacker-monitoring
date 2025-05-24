@@ -2,6 +2,7 @@
   "name": "slacker-monitoring",
   "version": "1.0.0",
   "description": "macOSでスクリーンショットを監視し、カーソルの非活動時にDiscordに通知するツール",
+  "type": "module",
   "main": "monitor.js",
   "scripts": {
     "start": "node monitor.js",

@@ -25,16 +25,16 @@ const TRIM_HEIGHT = 30;
 /**
  * スクリーンショットディレクトリを作成
  */
-function ensureDirectoryExists() {
+const ensureDirectoryExists = () => {
   if (!fs.existsSync(screenshotsDir)) {
     fs.mkdirSync(screenshotsDir, { recursive: true });
   }
-}
+};
 
 /**
  * screencaptureコマンドでスクリーンショットを取得
  */
-function takeScreenshot(outputPath) {
+const takeScreenshot = (outputPath) => {
   return new Promise((resolve, reject) => {
     exec(`screencapture -x "${outputPath}"`, (error, stdout, stderr) => {
       if (error) {
@@ -44,12 +44,12 @@ function takeScreenshot(outputPath) {
       resolve();
     });
   });
-}
+};
 
 /**
  * 画像の右上部分をトリミング
  */
-async function cropRightTop(inputPath, outputPath) {
+const cropRightTop = async (inputPath, outputPath) => {
   try {
     const metadata = await sharp(inputPath).metadata();
     const { width, height } = metadata;
@@ -74,12 +74,12 @@ async function cropRightTop(inputPath, outputPath) {
     console.error('トリミングエラー:', error);
     throw error;
   }
-}
+};
 
 /**
  * 2つのPNG画像を比較
  */
-function compareImages(path1, path2) {
+const compareImages = (path1, path2) => {
   return new Promise((resolve, reject) => {
     const img1 = fs.createReadStream(path1).pipe(new PNG());
     const img2 = fs.createReadStream(path2).pipe(new PNG());
@@ -87,7 +87,7 @@ function compareImages(path1, path2) {
     let img1Data, img2Data;
     let completed = 0;
 
-    function checkComplete() {
+    const checkComplete = () => {
       completed++;
       if (completed === 2) {
         if (img1Data.width !== img2Data.width || img1Data.height !== img2Data.height) {
@@ -106,7 +106,7 @@ function compareImages(path1, path2) {
 
         resolve(diffPixels);
       }
-    }
+    };
 
     img1.on('parsed', function () {
       img1Data = this;
@@ -121,12 +121,12 @@ function compareImages(path1, path2) {
     img1.on('error', reject);
     img2.on('error', reject);
   });
-}
+};
 
 /**
  * Discord Webhookにメッセージを送信
  */
-async function sendDiscordMessage(message) {
+const sendDiscordMessage = async (message) => {
   try {
     const response = await fetch(discordWebhookUrl, {
       method: 'POST',
@@ -146,12 +146,12 @@ async function sendDiscordMessage(message) {
   } catch (error) {
     console.error('Discord通知の送信に失敗しました:', error);
   }
-}
+};
 
 /**
  * メイン処理
  */
-async function monitor() {
+const monitor = async () => {
   try {
     console.log('スクリーンショットを取得中...');
 
@@ -188,12 +188,12 @@ async function monitor() {
   } catch (error) {
     console.error('監視処理でエラーが発生しました:', error);
   }
-}
+};
 
 /**
  * アプリケーション開始
  */
-function start() {
+const start = () => {
   console.log('スクリーンショット監視を開始します...');
 
   // 環境変数のチェック
@@ -212,7 +212,7 @@ function start() {
 
   // 1分ごとに実行
   setInterval(monitor, 10 * 1000);
-}
+};
 
 // アプリケーション開始
 start(); 
