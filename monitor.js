@@ -180,8 +180,12 @@ const monitor = async () => {
         
         if (consecutiveWarningCount <= MAX_CONSECUTIVE_WARNINGS) {
             await sendDiscordMessage('⚠️ keigoのカーソルが 3分間動いていません。サボっている可能性があります。');
-        } else {
-            console.log(`📵 連続警告が${MAX_CONSECUTIVE_WARNINGS}回に達したため、通知を停止しています`);
+            
+            if (consecutiveWarningCount === MAX_CONSECUTIVE_WARNINGS) {
+                console.log(`🛑 連続警告が${MAX_CONSECUTIVE_WARNINGS}回に達しました。プロセスを終了します。`);
+                await sendDiscordMessage('🛑 連続3回の警告によりシステムを停止しました。');
+                process.exit(0);
+            }
         }
       } else {
         console.log('✅ 画面に変化がありました');
