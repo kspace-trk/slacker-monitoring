@@ -210,8 +210,8 @@ const start = () => {
   // 即座に1回実行
   monitor();
 
-  // 1分ごとに実行
-  setInterval(monitor, 10 * 1000);
+  // 3分ごとに実行
+  setInterval(monitor, 3 * 60 * 1000);
 };
 
 // アプリケーション開始
