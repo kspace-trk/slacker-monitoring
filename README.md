@@ -6,7 +6,7 @@
 
 ローカル環境で動作する、macOSでスクリーンショットを監視し、カーソルの非活動時にDiscordに通知するツールです。
 
-<img src="https://github.com/user-attachments/assets/a717f85b-1298-43c0-8e53-74c2001c5bc7" width="400px">
+<img src="https://github.com/user-attachments/assets/a717f85b-1298-43c0-8e53-74c2001c5bc7" width="600px">
 
 ## 機能
 
