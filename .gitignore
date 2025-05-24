@@ -4,6 +4,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# 環境変数
+.env
+
 # スクリーンショット
 screenshots/
 
@@ -15,7 +18,4 @@ screenshots/
 .idea/
 
 # ログファイル
-*.log 
-
-# 環境変数
-.env
+*.log
