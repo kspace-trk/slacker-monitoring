@@ -22,6 +22,10 @@ const croppedPreviousPath = path.join(screenshotsDir, 'previous_cropped.png');
 const TRIM_WIDTH = 170;
 const TRIM_HEIGHT = 30;
 
+// 連続警告のカウンター
+let consecutiveWarningCount = 0;
+const MAX_CONSECUTIVE_WARNINGS = 3;
+
 /**
  * スクリーンショットディレクトリを作成
  */
@@ -171,10 +175,20 @@ const monitor = async () => {
       console.log(`差分ピクセル数: ${diffPixels}`);
 
       if (diffPixels === 0) {
-        console.log('⚠️ カーソルが動いていません！');
-        await sendDiscordMessage('⚠️ keigoのカーソルが 3分間動いていません。サボっている可能性があります。');
+        consecutiveWarningCount++;
+        console.log(`⚠️ カーソルが動いていません！(連続${consecutiveWarningCount}回目)`);
+        
+        if (consecutiveWarningCount <= MAX_CONSECUTIVE_WARNINGS) {
+            await sendDiscordMessage('⚠️ keigoのカーソルが 3分間動いていません。サボっている可能性があります。');
+        } else {
+            console.log(`📵 連続警告が${MAX_CONSECUTIVE_WARNINGS}回に達したため、通知を停止しています`);
+        }
       } else {
         console.log('✅ 画面に変化がありました');
+        if (consecutiveWarningCount > 0) {
+            console.log('🔄 警告カウンターをリセットしました');
+            consecutiveWarningCount = 0;
+        }
       }
     } else {
       console.log('初回実行 - 次回から比較を開始します');
