@@ -13,38 +13,32 @@ macOSでスクリーンショットを監視し、カーソルの非活動時に
 ## セットアップ
 
 1. 依存関係をインストール:
+
 ```bash
 npm install
 ```
 
-2. `monitor.js`の`discordWebhookUrl`変数にDiscord WebhookのURLを設定:
-```javascript
-const discordWebhookUrl = 'https://discord.com/api/webhooks/YOUR_WEBHOOK_URL';
-```
+1. Discord Webhook URLを環境変数に設定:
+
+`.env.example`ファイルを複製し、`.env`ファイルを作成してください。
 
 ## 使用方法
 
 ```bash
-npm start
-```
-
-または
-
-```bash
-node monitor.js
+npm run start
 ```
 
 ## 動作要件
 
 - macOS（`screencapture`コマンドが利用可能）
-- Node.js 14以上
+- Node.js 18以上
 - スクリーンショット権限が有効になっていること
 
 ## 注意事項
 
 - 初回実行時は権限の許可が必要になる場合があります
 - `screenshots`ディレクトリが自動的に作成され、スクリーンショットが保存されます
-- Discord WebhookのURLを必ず設定してから実行してください
+- DISCORD_WEBHOOK_URL環境変数を必ず設定してから実行してください
 
 ## ファイル構成
 
@@ -56,4 +50,4 @@ node monitor.js
 
 - `pixelmatch` - 画像差分比較
 - `pngjs` - PNG画像の読み書き
-- `sharp` - 画像処理・トリミング 
+- `sharp` - 画像処理・トリミング
