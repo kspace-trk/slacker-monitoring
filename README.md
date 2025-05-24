@@ -1,6 +1,12 @@
 # Slacker Monitoring
 
-macOSでスクリーンショットを監視し、カーソルの非活動時にDiscordに通知するツールです。
+<img src="https://github.com/user-attachments/assets/a83b06d9-6add-49d3-be90-bce05ee0ae96" width="100px">
+
+つい作業中にツイッターを見てしまうあなたに。
+
+ローカル環境で動作する、macOSでスクリーンショットを監視し、カーソルの非活動時にDiscordに通知するツールです。
+
+<img src="https://github.com/user-attachments/assets/a717f85b-1298-43c0-8e53-74c2001c5bc7" width="400px">
 
 ## 機能
 
