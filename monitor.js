@@ -5,8 +5,8 @@ const pixelmatch = require('pixelmatch');
 const { PNG } = require('pngjs');
 const sharp = require('sharp');
 
-// Discord Webhook URL（環境変数ではなく変数として定義）
-const discordWebhookUrl = '';
+// Discord Webhook URL
+const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL;
 
 // ファイルパス
 const screenshotsDir = './screenshots';
